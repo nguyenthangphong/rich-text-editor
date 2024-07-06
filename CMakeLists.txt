@@ -18,6 +18,9 @@ set(PROJECT_SOURCES
         mainwindow.h
         mainwindow.ui
         resources.qrc
+        finddialog.h
+        finddialog.cpp
+        finddialog.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
