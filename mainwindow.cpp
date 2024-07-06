@@ -69,7 +69,16 @@ void MainWindow::on_actionRedo_triggered()
 
 void MainWindow::on_actionFind_triggered()
 {
+    FindDialog *dlg = new FindDialog(this);
+    if (!dlg->exec()) return;
 
+    QTextDocument::FindFlags flags;
+    if (dlg->caseSensitive()) flags = flags | QTextDocument::FindFlag::FindCaseSensitively;
+    if (dlg->wholeWords()) flags = flags | QTextDocument::FindFlag::FindWholeWords;
+    if (dlg->backwards()) flags = flags | QTextDocument::FindFlag::FindBackward;
+
+    bool value = ui->textEdit->find(dlg->text(), flags);
+    if (!value) QMessageBox::information(this, "Not Found", "Was not able to find: " + dlg->text());
 }
 
 void MainWindow::on_actionReplace_triggered()
@@ -151,7 +160,7 @@ void MainWindow::openFile()
     if (path.isEmpty()) return;
 
     QFile file(path);
-    if (file.open(QIODevice::ReadOnly)) {
+    if (!file.open(QIODevice::ReadOnly)) {
         QMessageBox::critical(this, "Error", file.errorString());
         return;
     }
@@ -173,7 +182,7 @@ void MainWindow::saveFile(QString path)
     }
 
     QFile file(path);
-    if (file.open(QIODevice::ReadOnly)) {
+    if (!file.open(QIODevice::ReadOnly)) {
         QMessageBox::critical(this, "Error", file.errorString());
         ui->statusbar->showMessage("Error could not save file");
         SaveFileAs();
