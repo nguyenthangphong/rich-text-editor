@@ -83,7 +83,24 @@ void MainWindow::on_actionFind_triggered()
 
 void MainWindow::on_actionReplace_triggered()
 {
+    ReplaceDialog *dlg = new ReplaceDialog(this);
+    if (!dlg->exec()) return;
 
+    if (dlg->all())
+    {
+        // Replace All
+        QString text = ui->textEdit->toHtml();
+        text = text.replace(dlg->text(), dlg->replaceText());
+        ui->textEdit->setHtml(text);
+    }
+    else
+    {
+        // Replace one
+        bool value = ui->textEdit->find(dlg->text());
+        QTextCursor cursor = ui->textEdit->textCursor();
+        cursor.insertHtml(dlg->replaceText());
+        if (!value) QMessageBox::information(this, "Not Found", "Was not able to find" + dlg->text());
+    }
 }
 
 void MainWindow::on_actionSelect_All_triggered()
