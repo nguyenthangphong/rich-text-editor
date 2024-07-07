@@ -120,17 +120,23 @@ void MainWindow::on_actionZoom_out_triggered()
 
 void MainWindow::on_actionBold_triggered()
 {
-
+    QFont font = ui->textEdit->currentFont();
+    font.bold() ? font.setBold(false) : font.setBold(true);
+    ui->textEdit->setCurrentFont(font);
 }
 
 void MainWindow::on_actionItalic_triggered()
 {
-
+    QFont font = ui->textEdit->currentFont();
+    font.italic() ? font.setItalic(false) : font.setItalic(true);
+    ui->textEdit->setCurrentFont(font);
 }
 
 void MainWindow::on_actionUnderline_triggered()
 {
-
+    QFont font = ui->textEdit->currentFont();
+    font.underline() ? font.setUnderline(false) : font.setUnderline(true);
+    ui->textEdit->setCurrentFont(font);
 }
 
 void MainWindow::on_actionStrike_triggered()
