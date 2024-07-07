@@ -92,6 +92,7 @@ void MainWindow::on_actionReplace_triggered()
         QString text = ui->textEdit->toHtml();
         text = text.replace(dlg->text(), dlg->replaceText());
         ui->textEdit->setHtml(text);
+        m_changed = true;
     }
     else
     {
@@ -100,6 +101,7 @@ void MainWindow::on_actionReplace_triggered()
         QTextCursor cursor = ui->textEdit->textCursor();
         cursor.insertHtml(dlg->replaceText());
         if (!value) QMessageBox::information(this, "Not Found", "Was not able to find" + dlg->text());
+        m_changed = true;
     }
 }
 
@@ -123,6 +125,7 @@ void MainWindow::on_actionBold_triggered()
     QFont font = ui->textEdit->currentFont();
     font.bold() ? font.setBold(false) : font.setBold(true);
     ui->textEdit->setCurrentFont(font);
+    m_changed = true;
 }
 
 void MainWindow::on_actionItalic_triggered()
@@ -130,6 +133,7 @@ void MainWindow::on_actionItalic_triggered()
     QFont font = ui->textEdit->currentFont();
     font.italic() ? font.setItalic(false) : font.setItalic(true);
     ui->textEdit->setCurrentFont(font);
+    m_changed = true;
 }
 
 void MainWindow::on_actionUnderline_triggered()
@@ -137,16 +141,23 @@ void MainWindow::on_actionUnderline_triggered()
     QFont font = ui->textEdit->currentFont();
     font.underline() ? font.setUnderline(false) : font.setUnderline(true);
     ui->textEdit->setCurrentFont(font);
+    m_changed = true;
 }
 
 void MainWindow::on_actionStrike_triggered()
 {
-
+    QFont font = ui->textEdit->currentFont();
+    font.strikeOut() ? font.setStrikeOut(false) : font.setStrikeOut(true);
+    ui->textEdit->setCurrentFont(font);
+    m_changed = true;
 }
 
 void MainWindow::on_actionColor_triggered()
 {
-
+    QColor currentColor = ui->textEdit->currentCharFormat().foreground().color();
+    QColor color = QColorDialog::getColor(currentColor, this, "Select a color");
+    ui->textEdit->setTextColor(color);
+    m_changed = true;
 }
 
 void MainWindow::on_actionFont_triggered()

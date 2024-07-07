@@ -7,6 +7,7 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QColorDialog>
 #include "finddialog.h"
 #include "replacedialog.h"
 
