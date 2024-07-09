@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QColorDialog>
+#include <QFontDialog>
 #include "finddialog.h"
 #include "replacedialog.h"
 

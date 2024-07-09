@@ -162,7 +162,9 @@ void MainWindow::on_actionColor_triggered()
 
 void MainWindow::on_actionFont_triggered()
 {
-
+    bool ok;
+    QFont font = QFontDialog::getFont(&ok, ui->textEdit->currentFont(), this, "Choose a font");
+    if (ok) ui->textEdit->setCurrentFont(font);
 }
 
 void MainWindow::on_actionHelp_triggered()
