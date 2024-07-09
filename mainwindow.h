@@ -9,8 +9,12 @@
 #include <QFileDialog>
 #include <QColorDialog>
 #include <QFontDialog>
+#include <QApplication>
+#include <QDesktopServices>
+#include <QUrl>
 #include "finddialog.h"
 #include "replacedialog.h"
+#include "aboutdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

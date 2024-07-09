@@ -169,12 +169,13 @@ void MainWindow::on_actionFont_triggered()
 
 void MainWindow::on_actionHelp_triggered()
 {
-
+    QDesktopServices::openUrl(QApplication::organizationDomain());
 }
 
 void MainWindow::on_actionAbout_triggered()
 {
-
+    AboutDialog *dlg = new AboutDialog(this);
+    dlg->exec();
 }
 
 void MainWindow::on_textEdit_textChanged()
