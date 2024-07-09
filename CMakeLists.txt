@@ -17,12 +17,15 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         finddialog.cpp
         replacedialog.cpp
+        aboutdialog.cpp
         mainwindow.h
         finddialog.h
         replacedialog.h
+        aboutdialog.h
         mainwindow.ui
         finddialog.ui
         replacedialog.ui
+        aboutdialog.ui
         resources.qrc
 )
 
